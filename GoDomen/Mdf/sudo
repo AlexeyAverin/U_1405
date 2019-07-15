@@ -1,0 +1,13 @@
+#%PAM-1.0
+
+#Old Domen 
+auth	required	pam_env.so readenv=1 user_readenv=0
+auth	required	pam_env.so readenv=1 envfile=/etc/default/locale user_readenv=0
+@include common-auth
+@include common-account
+@include common-session-noninteractive
+
+#New pam_mount
+#auth	sufficient	pam_winbind.so
+#auth	sufficient	pam_unix.so	use_first_pass
+#auth	required	pam_deny.so

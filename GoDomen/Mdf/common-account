@@ -1,0 +1,15 @@
+#
+# /etc/pam.d/common-account - authorization settings common to all services
+#
+
+#New pam_mount
+#account	sufficient	pam_winbind.so
+#account	required	pam_unix.so 
+
+#Old Domen
+account	[success=2 new_authtok_reqd=done default=ignore]	pam_unix.so 
+account	[success=1 new_authtok_reqd=done default=ignore]	pam_winbind.so 
+account	requisite			pam_deny.so
+account	required			pam_permit.so
+account	required			pam_krb5.so minimum_uid=1000
+# end of pam-auth-update config

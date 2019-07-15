@@ -1,0 +1,22 @@
+#
+# /etc/pam.d/common-auth - authentication settings common to all services
+#
+
+#Old Domen (worked)
+#auth	[success=3 default=ignore]	pam_krb5.so minimum_uid=1000
+#auth	[success=2 default=ignore]	pam_unix.so nullok_secure try_first_pass
+#auth	[success=1 default=ignore]	pam_winbind.so krb5_auth krb5_ccache_type=FILE cached_login try_first_pass
+#auth	requisite			pam_deny.so
+#auth	required			pam_permit.so
+#auth	optional			pam_cap.so
+
+#New pam_mount
+#auth	required	pam_env.so
+auth	required	pam_mount.so
+auth	sufficient	pam_krb5.so minimum_uid=1000 try_first_pass
+auth	sufficient	pam_unix.so nullok_secure try_first_pass
+auth	sufficient	pam_winbind.so krb5_auth krb5_ccache_type=FILE cached_login try_first_pass
+auth	required	pam_deny.so
+auth	required	pam_permit.so
+auth	optional	pam_cap.so
+# end of pam-auth-update config
